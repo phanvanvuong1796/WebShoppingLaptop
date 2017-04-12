@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@model WebsiteBanHang.Models.IndexData
+
+@using WebsiteBanHang.Models;
+@{
+    //Commit change
+    List<Category> listCategory = Model.listCategory;
+    int i = 0;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     
@@ -56,7 +64,7 @@
                     <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-inner">
-                    <a class="brand" href="index.html"><img src="/Content/themes/images/logo.png" alt="Bootsshop" /></a>
+                    <a class="brand" href="index.html"><img src="/Content/themes/images/vienlogo.png" alt="Bootsshop" /></a>
                     <form class="form-inline navbar-search" method="post" action="products.html">
                         <input id="srchFld" class="srchTxt" type="text" />
                         <select class="srchTxt">
@@ -113,7 +121,39 @@
                 <div id="sidebar" class="span3">
                     <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="/Content/themes/images/ico-cart.png" alt="cart">3 Sản phẩm trong giỏ     <span class="badge badge-warning pull-right">150.000 đ</span></a></div>
                     <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                        <li class="subMenu open">
+
+                        @foreach (var items in listCategory)
+                        {
+                            if (i == 0)
+                            {
+                                <li class="subMenu open">
+                                    <a> @items.categoryName [@items.categoryQuantity] </a>
+                                    <ul>
+
+                                        @foreach (var subItems in items.listSubCate)
+                                        {
+                                            <li><a href="/Home/Products?type=@subItems.subCateType"><i class="icon-chevron-right"></i>@subItems.subCateName (@subItems.subCateQuantity)</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="subMenu">
+                                    <a> @items.categoryName [@items.categoryQuantity] </a>
+                                    <ul style="display:none">
+
+                                        @foreach (var subItems in items.listSubCate)
+                                        {
+                                            <li><a href="/Home/Products?type=@subItems.subCateName"><i class="icon-chevron-right"></i>@subItems.subCateName (@subItems.subCateQuantity)</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                            i++;
+                        }
+
+                        @*<li class="subMenu open">
                             <a> LAPTOP PHỔ THÔNG [100]</a>
                             <ul>
                                 <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Laptop Dell (30) </a></li>
@@ -149,7 +189,7 @@
                                 <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Dell Latitude (20)</a></li>
                                 <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Lenovo ThinkPad (25)</a></li>
                             </ul>
-                        </li>
+                        </li>*@
                     </ul>
                     <br />
                     <div class="thumbnail">
@@ -183,37 +223,37 @@
         <div class="container">
             <div class="row">
                 <div class="span3">
-                    <h5>ACCOUNT</h5>
-                    <a href="login.html">YOUR ACCOUNT</a>
-                    <a href="login.html">PERSONAL INFORMATION</a>
-                    <a href="login.html">ADDRESSES</a>
-                    <a href="login.html">DISCOUNT</a>
-                    <a href="login.html">ORDER HISTORY</a>
+                    <h5>TÀI KHOẢN</h5>
+                    <a href="login.html">TÀI KHOẢN CỦA BẠN</a>
+                    <a href="login.html">THÔNG TIN CÁ NHÂN</a>
+                    <a href="login.html">ĐỊA CHỈ</a>
+                    <a href="login.html">GIẢM GIÁ</a>
+                    <a href="login.html">LỊCH SỬ ĐƠN HÀNG</a>
                 </div>
                 <div class="span3">
-                    <h5>INFORMATION</h5>
-                    <a href="contact.html">CONTACT</a>
-                    <a href="register.html">REGISTRATION</a>
-                    <a href="legal_notice.html">LEGAL NOTICE</a>
-                    <a href="tac.html">TERMS AND CONDITIONS</a>
+                    <h5>THÔNG TIN</h5>
+                    <a href="contact.html">LIÊN HỆ</a>
+                    <a href="register.html">ĐĂNG KÝ</a>
+                    <a href="legal_notice.html">ĐIỀU KHOẢN</a>
+                    <a href="tac.html">ĐIỀU KHOẢN VÀ ĐIỀU KIỆN</a>
                     <a href="faq.html">FAQ</a>
                 </div>
                 <div class="span3">
                     <h5>OUR OFFERS</h5>
-                    <a href="#">NEW PRODUCTS</a>
-                    <a href="#">TOP SELLERS</a>
-                    <a href="special_offer.html">SPECIAL OFFERS</a>
-                    <a href="#">MANUFACTURERS</a>
-                    <a href="#">SUPPLIERS</a>
+                    <a href="#">SẢN PHẨM MỚI</a>
+                    <a href="#">BÁN CHẠY</a>
+                    <a href="special_offer.html">KHUYẾN MÃI ĐẶC BIỆT</a>
+                    <a href="#">NHÀ SẢN XUẤT</a>
+                    <a href="#">NHÀ CUNG CẤP</a>
                 </div>
                 <div id="socialMedia" class="span3 pull-right">
-                    <h5>SOCIAL MEDIA </h5>
+                    <h5>MẠNG XÃ HỘI </h5>
                     <a href="#"><img width="60" height="60" src="/Content/themes/images/facebook.png" title="facebook" alt="facebook" /></a>
                     <a href="#"><img width="60" height="60" src="/Content/themes/images/twitter.png" title="twitter" alt="twitter" /></a>
                     <a href="#"><img width="60" height="60" src="/Content/themes/images/youtube.png" title="youtube" alt="youtube" /></a>
                 </div>
             </div>
-            <p class="pull-right">&copy; Bootshop</p>
+            <p class="pull-right">&copy; Vienshop</p>
         </div><!-- Container End -->
     </div>
     <!-- Placed at the end of the document so the pages load faster ============================================= -->

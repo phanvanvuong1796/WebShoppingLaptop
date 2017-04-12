@@ -1,10 +1,97 @@
-﻿
+﻿@model WebsiteBanHang.Models.IndexData
+@using WebsiteBanHang.Models;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     //Commit change
+    List<List<Product>> featuredProducts = Model.featuredProducts;
+    List<Product> lastestProducts = Model.lastestProducts;
+    int i = 0;
 }
 
 <div class="span9">
+    <div class="well well-small">
+        <h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
+        <div class="row-fluid">
+            <div id="featured" class="carousel slide">
+                <div class="carousel-inner">
+                    @foreach (var list in featuredProducts)
+                    {
+                        if (i == 0)
+                        {
+                            <div class="item active">
+                                <ul class="thumbnails">
+                                    @foreach (var items in list)
+                                    {
+                                        <li class="span3">
+                                            <div class="thumbnail">
+                                                <i class="tag"></i>
+                                                <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                                <div class="caption">
+                                                    <h5>@items.Name</h5>
+                                                    <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price</span></h4>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    }
+
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item">
+                                <ul class="thumbnails">
+                                    @foreach (var items in list)
+                                    {
+                                        <li class="span3">
+                                            <div class="thumbnail">
+                                                <i class="tag"></i>
+                                                <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                                <div class="caption">
+                                                    <h5>@items.Name</h5>
+                                                    <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">@items.Price</span></h4>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                        }
+                        i++;
+                    }
+                    
+                </div>
+                <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+            </div>
+        </div>
+    </div>
+    <h4>Latest Products </h4>
+    <ul class="thumbnails">
+        @foreach (var items in lastestProducts)
+        {
+            <li class="span3">
+                <div class="thumbnail">
+                    <a href="product_details.html"><img src=@items.UriImage alt="" /></a>
+                    <div class="caption">
+                        <h5>@items.Name</h5>
+                        <p>
+                            @items.Details
+                        </p>
+
+                        <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price</a></h4>
+                    </div>
+                </div>
+            </li>
+        }
+        
+    </ul>
+
+</div>
+
+@*<div class="span9">
     <div class="well well-small">
         <h4>Sản phẩm nổi bật <small class="pull-right">20+ Sản phẩm nổi bật</small></h4>
         <div class="row-fluid">
@@ -12,168 +99,115 @@
                 <div class="carousel-inner">
                     <div class="item active">
                         <ul class="thumbnails">
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/b1.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Macbook Pro 2017</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">46.490.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/b2.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Laptop HP Pavilion X360</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">12.290.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/b3.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Laptop HP 15-AU023TU</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">10.290.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/b4.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Laptop MSI GP62</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">27.900.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
+                            @foreach (var items in featuredProducts)
+                            {
+
+                                if (i >= 0 && i <= 3)
+                                {
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <i class="tag"></i>
+                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                            <div class="caption">
+                                                <h5>@items.Name</h5>
+                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    i++;
+                                }
+                                else
+                                {
+                                    i = 0;
+                                }
+                            }
                         </ul>
                     </div>
                     <div class="item">
                         <ul class="thumbnails">
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/13.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Laptop MSI GE62</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">29.190.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <i class="tag"></i>
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/6.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Lenovo Thinkpad X240</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">23.900.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/7.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Dell Precision M4800</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">18.500.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/8.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Laptop Asus A556UA</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">11.690.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
+                            @foreach (var items in featuredProducts)
+                            {
+
+                                if (i >= 4 && i <= 7)
+                                {
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <i class="tag"></i>
+                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                            <div class="caption">
+                                                <h5>@items.Name</h5>
+                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                else if (i < 4)
+                                {
+                                    i++;
+                                }
+                                else
+                                {
+                                    i = 0;
+                                }
+                            }
                         </ul>
                     </div>
                     <div class="item">
                         <ul class="thumbnails">
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/9.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Laptop Acer Aspire F5</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">9.190.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/10.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Laptop Dell XPS13</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">42.990.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/11.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Dell Latitude 5570</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">29.990.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/1.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Dell Latitude 5540</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">29.990.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
+                            @foreach (var items in featuredProducts)
+                            {
+
+                                if (i >= 8 && i <= 11)
+                                {
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <i class="tag"></i>
+                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                            <div class="caption">
+                                                <h5>@items.Name</h5>
+                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                else if (i < 8)
+                                {
+                                    i++;
+                                }
+                                else
+                                {
+                                    i = 0;
+                                }
+                            }
                         </ul>
                     </div>
                     <div class="item">
                         <ul class="thumbnails">
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/2.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Dell Latitude 5530</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">15.990.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/3.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Hp Elitebook 8570p</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">7.800.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/4.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>HP Probook 840 G1</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">7.500.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span3">
-                                <div class="thumbnail">
-                                    <a href="product_details.html"><img src="/Content/themes/images/products/5.jpg" alt=""></a>
-                                    <div class="caption">
-                                        <h5>Lenovo ThinkPad X1</h5>
-                                        <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">23.590.000 <sup>đ</sup></span></h4>
-                                    </div>
-                                </div>
-                            </li>
+                            @foreach (var items in featuredProducts)
+                            {
+
+                                if (i >= 12 && i <= 15)
+                                {
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <i class="tag"></i>
+                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                            <div class="caption">
+                                                <h5>@items.Name</h5>
+                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                                else if (i < 12)
+                                {
+                                    i++;
+                                }
+                                else
+                                {
+                                    i = 0;
+                                }
+                            }
                         </ul>
                     </div>
                 </div>
@@ -184,80 +218,24 @@
     </div>
     <h4>Sản phẩm mới nhất </h4>
     <ul class="thumbnails">
-        <li class="span3">
-            <div class="thumbnail">
-                <a href="product_details.html"><img src="/Content/themes/images/products/6.jpg" alt="" /></a>
-                <div class="caption">
-                    <h5>Lenovo Thinkpad X240</h5>
-                    <p>
-                        Intel Core i5/4GB/500GB/7200rpm
-                    </p>
+        
 
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">23.900.000 <sup>đ</sup></a></h4>
+        @foreach (var items in lastestProducts)
+        {
+            <li class="span3">
+                <div class="thumbnail">
+                    <a href="product_details.html"><img src=@items.UriImage alt="" /></a>
+                    <div class="caption">
+                        <h5>@items.Name</h5>
+                        <p>
+                            @items.Details
+                        </p>
+                        <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price <sup>đ</sup></a></h4>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li class="span3">
-            <div class="thumbnail">
-                <a href="product_details.html"><img src="/Content/themes/images/products/7.jpg" alt="" /></a>
-                <div class="caption">
-                    <h5>Dell Precision M4800</h5>
-                    <p>
-                        Intel Core i7/16G/500G/Vga K2100
-                    </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">18.500.000 <sup>đ</sup></a></h4>
-                </div>
-            </div>
-        </li>
-        <li class="span3">
-            <div class="thumbnail">
-                <a href="product_details.html"><img src="/Content/themes/images/products/8.jpg" alt="" /></a>
-                <div class="caption">
-                    <h5>Laptop Asus A556UA</h5>
-                    <p>
-                        Intel Core i5/4GB/500GB/Win10
-                    </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">11.690.000 <sup>đ</sup></a></h4>
-                </div>
-            </div>
-        </li>
-        <li class="span3">
-            <div class="thumbnail">
-                <a href="product_details.html"><img src="/Content/themes/images/products/9.jpg" alt="" /></a>
-                <div class="caption">
-                    <h5>Laptop Acer Aspire F5</h5>
-                    <p>
-                        Intel Core i5/RAM 4GB/HDD 500GB
-                    </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">9.190.000 <sup>đ</sup></a></h4>
-                </div>
-            </div>
-        </li>
-        <li class="span3">
-            <div class="thumbnail">
-                <a href="product_details.html"><img src="/Content/themes/images/products/10.jpg" alt="" /></a>
-                <div class="caption">
-                    <h5>Laptop Dell XPS13</h5>
-                    <p>
-                        Intel Core i5/8GB/HDD 1T/GTX 960M
-                    </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">42.990.000 <sup>đ</sup></a></h4>
-                </div>
-            </div>
-        </li>
-        <li class="span3">
-            <div class="thumbnail">
-                <a href="product_details.html"><img src="/Content/themes/images/products/11.jpg" alt="" /></a>
-                <div class="caption">
-                    <h5>Dell Latitude 5570</h5>
-                    <p>
-                        Intel Core i5/8GB/SSD 256GB
-                    </p>
-                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">42.990.000 <sup>đ</sup></a></h4>
-                </div>
-            </div>
-        </li>
+            </li>
+        }
     </ul>
 
-</div>
+</div>*@
 

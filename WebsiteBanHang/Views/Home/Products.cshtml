@@ -1,0 +1,72 @@
+﻿@model WebsiteBanHang.Models.IndexData
+@using WebsiteBanHang.Models
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Product> listProduct = Model.listProductsType;
+    Product productDetail = new Product();
+    
+}
+
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a href="/Home/Index">Home</a> <span class="divider">/</span></li>
+        <li class="active">Sản phẩm</li>
+    </ul>
+    <h3> Sản phẩm <small class="pull-right"> 40 sản phẩm có sẵn </small></h3>
+    <hr class="soft" />
+    <p>
+        Bán laptop very uy tín
+    </p>
+    <hr class="soft" />
+    <form class="form-horizontal span6">
+        <div class="control-group">
+            <label class="control-label alignL">Sắp xếp </label>
+            <select>
+                <option>Tên sản phẩm A - Z</option>
+                <option>Tên sản phẩm Z - A</option>
+                <option>Giá thấp nhất</option>
+            </select>
+        </div>
+    </form>
+
+    <br class="clr" />
+    <div class="tab-content">
+        
+
+        <div class="tab-pane active" id="blockView">
+            <ul class="thumbnails">
+                @foreach (var items in listProduct)
+                {
+                    <li class="span3">
+                        <div class="thumbnail">
+                            <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt="" /></a>
+                            <div class="caption">
+                                <h5>@items.Name</h5>
+                                <p>
+                                    @items.Details
+                                </p>
+                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price</a></h4>
+                            </div>
+                        </div>
+                    </li>
+                }
+                
+            </ul>
+            <hr class="soft" />
+        </div>
+    </div>
+    <div class="pagination">
+        <ul>
+            <li><a href="#">&lsaquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">&rsaquo;</a></li>
+        </ul>
+    </div>
+    <br class="clr" />
+</div>

@@ -152,7 +152,6 @@
     <Content Include="Content\themes\images\lightbox\lightbox-btn-next.gif" />
     <Content Include="Content\themes\images\lightbox\lightbox-btn-prev.gif" />
     <Content Include="Content\themes\images\lightbox\lightbox-ico-loading.gif" />
-    <Content Include="Content\themes\images\logo.png" />
     <Content Include="Content\themes\images\new.png" />
     <Content Include="Content\themes\images\payment_methods.png" />
     <Content Include="Content\themes\images\products\1.jpg" />
@@ -168,9 +167,6 @@
     <Content Include="Content\themes\images\products\7.jpg" />
     <Content Include="Content\themes\images\products\8.jpg" />
     <Content Include="Content\themes\images\products\9.jpg" />
-    <Content Include="Content\themes\images\products\b1.jpg" />
-    <Content Include="Content\themes\images\products\b2.jpg" />
-    <Content Include="Content\themes\images\products\b3.jpg" />
     <Content Include="Content\themes\images\products\b4.jpg" />
     <Content Include="Content\themes\images\products\large\3.jpg" />
     <Content Include="Content\themes\images\products\large\f1.jpg" />
@@ -180,6 +176,7 @@
     <Content Include="Content\themes\images\search.png" />
     <Content Include="Content\themes\images\tabRepeatInactive.png" />
     <Content Include="Content\themes\images\twitter.png" />
+    <Content Include="Content\themes\images\vienlogo.png" />
     <Content Include="Content\themes\images\youtube.png" />
     <Content Include="Content\themes\img\glyphicons-halflings-white.png" />
     <Content Include="Content\themes\img\glyphicons-halflings.png" />
@@ -318,6 +315,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\IndexData.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +332,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Products.cshtml" />
+    <Content Include="Views\Home\ProductsDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -342,7 +344,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\less\oregional\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
