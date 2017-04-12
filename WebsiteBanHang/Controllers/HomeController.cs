@@ -33,7 +33,24 @@ namespace WebsiteBanHang.Controllers
 
         public ActionResult ProductsDetail(string type, int id)
         {
-            List<Product> list = getProducts(type);
+            List<Product> list;
+            if ("LASTPROD".Equals(type))
+            {
+                list = getLastestProducts();
+            }else if ("FEATPROD".Equals(type)){
+                list = new List<Product>();
+                List<List<Product >> listFeat = getFeaturedProducts();
+                foreach(var lis in listFeat)
+                {
+                    foreach(var prod in lis)
+                    {
+                        list.Add(prod);
+                    }
+                }
+            }else
+            {
+                list = getProducts(type);
+            }
             Product product =null;
             foreach(var pro in list)
             {
@@ -82,6 +99,7 @@ namespace WebsiteBanHang.Controllers
                 product.Price = "20.000.000";
                 product.Details = "Intel Core i5/4GB/500GB/7200rpm";
                 product.UriImage = "/Content/themes/images/products/"+(i+1)+".jpg";
+                product.Type = "LASTPROD";
                 list.Add(product);
             }
             return list;
@@ -100,6 +118,7 @@ namespace WebsiteBanHang.Controllers
                 product.Price = "20.000.000";
                 product.Details = "Intel Core i5/4GB/500GB/7200rpm";
                 product.UriImage = "/Content/themes/images/products/" + (i + 1) + ".jpg";
+                product.Type = "FEATPROD";
                 list.Add(product);
                 if(i==3 || i==7 || i==11 || i == 15)
                 {

@@ -10,7 +10,7 @@
 
 <div class="span9">
     <div class="well well-small">
-        <h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
+        <h4>Featured Products <small class="pull-right">20 Sản phẩm nổi bật</small></h4>
         <div class="row-fluid">
             <div id="featured" class="carousel slide">
                 <div class="carousel-inner">
@@ -25,10 +25,10 @@
                                         <li class="span3">
                                             <div class="thumbnail">
                                                 <i class="tag"></i>
-                                                <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                                <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt=""></a>
                                                 <div class="caption">
                                                     <h5>@items.Name</h5>
-                                                    <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price</span></h4>
+                                                    <h4><a class="btn" href="/Home/ProductsDetail?type=@items.Type&id=@items.Id">XEM</a> <span class="pull-right">@items.Price</span></h4>
                                                 </div>
                                             </div>
                                         </li>
@@ -47,10 +47,10 @@
                                         <li class="span3">
                                             <div class="thumbnail">
                                                 <i class="tag"></i>
-                                                <a href="product_details.html"><img src=@items.UriImage alt=""></a>
+                                                <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt=""></a>
                                                 <div class="caption">
                                                     <h5>@items.Name</h5>
-                                                    <h4><a class="btn" href="product_details.html">VIEW</a> <span class="pull-right">@items.Price</span></h4>
+                                                    <h4><a class="btn" href="/Home/ProductsDetail?type=@items.Type&id=@items.Id">VIEW</a> <span class="pull-right">@items.Price</span></h4>
                                                 </div>
                                             </div>
                                         </li>
@@ -74,14 +74,14 @@
         {
             <li class="span3">
                 <div class="thumbnail">
-                    <a href="product_details.html"><img src=@items.UriImage alt="" /></a>
+                    <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt="" /></a>
                     <div class="caption">
                         <h5>@items.Name</h5>
                         <p>
                             @items.Details
                         </p>
 
-                        <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price</a></h4>
+                        <h4 style="text-align:center"><a class="btn" href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price</a></h4>
                     </div>
                 </div>
             </li>
