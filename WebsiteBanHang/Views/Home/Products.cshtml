@@ -1,10 +1,10 @@
 ﻿@model WebsiteBanHang.Models.IndexData
-@using WebsiteBanHang.Models
+@using WebsiteBanHang.Models.Entities
 
 @{
     ViewBag.Title = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<Product> listProduct = Model.listProductsType;
+    IQueryable<Product> listProduct = Model.listProductsType;
     Product productDetail = new Product();
     
 }
@@ -41,13 +41,13 @@
                 {
                     <li class="span3">
                         <div class="thumbnail">
-                            <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt="" /></a>
+                            <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt="" /></a>
                             <div class="caption">
-                                <h5>@items.Name</h5>
+                                <h5>@items.tensanpham</h5>
                                 <p>
-                                    @items.Details
+                                    @items.mota
                                 </p>
-                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price</a></h4>
+                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.dongia</a></h4>
                             </div>
                         </div>
                     </li>

@@ -8,10 +8,10 @@ namespace WebsiteBanHang.Models.DAO
 {
     public class CategoryDao
     {
-        ShopLaptopModel shopLapModel;
+        ShopLapModel shopLapModel;
         public CategoryDao()
         {
-            shopLapModel = new ShopLaptopModel();
+            shopLapModel = new ShopLapModel();
         }
 
         public IQueryable<Category> GetCategory()

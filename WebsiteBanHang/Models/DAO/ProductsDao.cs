@@ -8,10 +8,10 @@ namespace WebsiteBanHang.Models.DAO
 {
     public class ProductsDao
     {
-        ShopLaptopModel model;
+        ShopLapModel model;
         public ProductsDao()
         {
-            model = new ShopLaptopModel();
+            model = new ShopLapModel();
         }
 
         public List<List<Product>> GetFeaturedProducts()

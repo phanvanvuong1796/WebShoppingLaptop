@@ -1,9 +1,9 @@
 ﻿@model WebsiteBanHang.Models.IndexData
 
-@using WebsiteBanHang.Models;
+@using WebsiteBanHang.Models.Entities;
 @{
     //Commit change
-    List<Category> listCategory = Model.listCategory;
+    IQueryable<Category> listCategory = Model.listCategory;
     int i = 0;
 }
 <!DOCTYPE html>
@@ -127,12 +127,12 @@
                             if (i == 0)
                             {
                                 <li class="subMenu open">
-                                    <a> @items.categoryName [@items.categoryQuantity] </a>
+                                    <a> @items.tendanhmuc [@items.soluong] </a>
                                     <ul>
 
-                                        @foreach (var subItems in items.listSubCate)
+                                        @foreach (var subItems in items.SubCategories)
                                         {
-                                            <li><a href="/Home/Products?type=@subItems.subCateType"><i class="icon-chevron-right"></i>@subItems.subCateName (@subItems.subCateQuantity)</a></li>
+                                            <li><a href="/Home/Products?type=@subItems.mahienthi"><i class="icon-chevron-right"></i>@subItems.tendanhmuccon (@subItems.soluong)</a></li>
                                         }
                                     </ul>
                                 </li>
@@ -140,12 +140,12 @@
                             else
                             {
                                 <li class="subMenu">
-                                    <a> @items.categoryName [@items.categoryQuantity] </a>
+                                    <a> @items.tendanhmuc [@items.soluong] </a>
                                     <ul style="display:none">
 
-                                        @foreach (var subItems in items.listSubCate)
+                                        @foreach (var subItems in items.SubCategories)
                                         {
-                                            <li><a href="/Home/Products?type=@subItems.subCateType"><i class="icon-chevron-right"></i>@subItems.subCateName (@subItems.subCateQuantity)</a></li>
+                                            <li><a href="/Home/Products?type=@subItems.mahienthi"><i class="icon-chevron-right"></i>@subItems.tendanhmuccon (@subItems.soluong)</a></li>
                                         }
                                     </ul>
                                 </li>

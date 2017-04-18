@@ -1,10 +1,10 @@
 ﻿@model WebsiteBanHang.Models.IndexData
-@using WebsiteBanHang.Models;
+@using WebsiteBanHang.Models.Entities;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     //Commit change
     List<List<Product>> featuredProducts = Model.featuredProducts;
-    List<Product> lastestProducts = Model.lastestProducts;
+    IQueryable<Product> lastestProducts = Model.lastestProducts;
     int i = 0;
 }
 
@@ -25,10 +25,10 @@
                                         <li class="span3">
                                             <div class="thumbnail">
                                                 <i class="tag"></i>
-                                                <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt=""></a>
+                                                <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt=""></a>
                                                 <div class="caption">
-                                                    <h5>@items.Name</h5>
-                                                    <h4><a class="btn" href="/Home/ProductsDetail?type=@items.Type&id=@items.Id">XEM</a> <span class="pull-right">@items.Price</span></h4>
+                                                    <h5>@items.tensanpham</h5>
+                                                    <h4><a class="btn" href="/Home/ProductsDetail?ma=@items.ma">XEM</a> <span class="pull-right">@items.dongia</span></h4>
                                                 </div>
                                             </div>
                                         </li>
@@ -47,10 +47,10 @@
                                         <li class="span3">
                                             <div class="thumbnail">
                                                 <i class="tag"></i>
-                                                <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt=""></a>
+                                                <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt=""></a>
                                                 <div class="caption">
-                                                    <h5>@items.Name</h5>
-                                                    <h4><a class="btn" href="/Home/ProductsDetail?type=@items.Type&id=@items.Id">VIEW</a> <span class="pull-right">@items.Price</span></h4>
+                                                    <h5>@items.tensanpham</h5>
+                                                    <h4><a class="btn" href="/Home/ProductsDetail?ma=@items.ma">XEM</a> <span class="pull-right">@items.dongia</span></h4>
                                                 </div>
                                             </div>
                                         </li>
@@ -74,14 +74,14 @@
         {
             <li class="span3">
                 <div class="thumbnail">
-                    <a href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"><img src=@items.UriImage alt="" /></a>
+                    <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt="" /></a>
                     <div class="caption">
-                        <h5>@items.Name</h5>
+                        <h5>@items.tensanpham</h5>
                         <p>
-                            @items.Details
+                            @items.mota
                         </p>
 
-                        <h4 style="text-align:center"><a class="btn" href="/Home/ProductsDetail?type=@items.Type&id=@items.Id"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price</a></h4>
+                        <h4 style="text-align:center"><a class="btn" href="/Home/ProductsDetail?ma=@items.ma"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.dongia</a></h4>
                     </div>
                 </div>
             </li>
@@ -91,151 +91,4 @@
 
 </div>
 
-@*<div class="span9">
-    <div class="well well-small">
-        <h4>Sản phẩm nổi bật <small class="pull-right">20+ Sản phẩm nổi bật</small></h4>
-        <div class="row-fluid">
-            <div id="featured" class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <ul class="thumbnails">
-                            @foreach (var items in featuredProducts)
-                            {
-
-                                if (i >= 0 && i <= 3)
-                                {
-                                    <li class="span3">
-                                        <div class="thumbnail">
-                                            <i class="tag"></i>
-                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
-                                            <div class="caption">
-                                                <h5>@items.Name</h5>
-                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    i++;
-                                }
-                                else
-                                {
-                                    i = 0;
-                                }
-                            }
-                        </ul>
-                    </div>
-                    <div class="item">
-                        <ul class="thumbnails">
-                            @foreach (var items in featuredProducts)
-                            {
-
-                                if (i >= 4 && i <= 7)
-                                {
-                                    <li class="span3">
-                                        <div class="thumbnail">
-                                            <i class="tag"></i>
-                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
-                                            <div class="caption">
-                                                <h5>@items.Name</h5>
-                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
-                                            </div>
-                                        </div>
-                                    </li>
-                                }
-                                else if (i < 4)
-                                {
-                                    i++;
-                                }
-                                else
-                                {
-                                    i = 0;
-                                }
-                            }
-                        </ul>
-                    </div>
-                    <div class="item">
-                        <ul class="thumbnails">
-                            @foreach (var items in featuredProducts)
-                            {
-
-                                if (i >= 8 && i <= 11)
-                                {
-                                    <li class="span3">
-                                        <div class="thumbnail">
-                                            <i class="tag"></i>
-                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
-                                            <div class="caption">
-                                                <h5>@items.Name</h5>
-                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
-                                            </div>
-                                        </div>
-                                    </li>
-                                }
-                                else if (i < 8)
-                                {
-                                    i++;
-                                }
-                                else
-                                {
-                                    i = 0;
-                                }
-                            }
-                        </ul>
-                    </div>
-                    <div class="item">
-                        <ul class="thumbnails">
-                            @foreach (var items in featuredProducts)
-                            {
-
-                                if (i >= 12 && i <= 15)
-                                {
-                                    <li class="span3">
-                                        <div class="thumbnail">
-                                            <i class="tag"></i>
-                                            <a href="product_details.html"><img src=@items.UriImage alt=""></a>
-                                            <div class="caption">
-                                                <h5>@items.Name</h5>
-                                                <h4><a class="btn" href="product_details.html">XEM</a> <span class="pull-right">@items.Price <sup>đ</sup></span></h4>
-                                            </div>
-                                        </div>
-                                    </li>
-                                }
-                                else if (i < 12)
-                                {
-                                    i++;
-                                }
-                                else
-                                {
-                                    i = 0;
-                                }
-                            }
-                        </ul>
-                    </div>
-                </div>
-                <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#featured" data-slide="next">›</a>
-            </div>
-        </div>
-    </div>
-    <h4>Sản phẩm mới nhất </h4>
-    <ul class="thumbnails">
-        
-
-        @foreach (var items in lastestProducts)
-        {
-            <li class="span3">
-                <div class="thumbnail">
-                    <a href="product_details.html"><img src=@items.UriImage alt="" /></a>
-                    <div class="caption">
-                        <h5>@items.Name</h5>
-                        <p>
-                            @items.Details
-                        </p>
-                        <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.Price <sup>đ</sup></a></h4>
-                    </div>
-                </div>
-            </li>
-        }
-    </ul>
-
-</div>*@
 
