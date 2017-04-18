@@ -10,8 +10,6 @@ namespace WebsiteBanHang.Models.Entities
     public partial class ProductDetail
     {
         [Key]
-        public Guid ma { get; set; }
-
         [StringLength(50)]
         public string masanpham { get; set; }
 

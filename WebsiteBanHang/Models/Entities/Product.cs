@@ -9,12 +9,6 @@ namespace WebsiteBanHang.Models.Entities
     [Table("Product")]
     public partial class Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            ProductDetails = new HashSet<ProductDetail>();
-        }
-
         [Key]
         [StringLength(50)]
         public string ma { get; set; }
@@ -37,9 +31,8 @@ namespace WebsiteBanHang.Models.Entities
 
         public string mota { get; set; }
 
-        public virtual SubCategory SubCategory { get; set; }
+        public virtual ProductDetail ProductDetail { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+        public virtual SubCategory SubCategory { get; set; }
     }
 }
