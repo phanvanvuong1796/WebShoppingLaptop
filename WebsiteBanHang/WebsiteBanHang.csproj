@@ -326,12 +326,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\CategoryDao.cs" />
-    <Compile Include="Models\Entities\Category.cs" />
-    <Compile Include="Models\Entities\Product.cs" />
-    <Compile Include="Models\Entities\ProductDetail.cs" />
-    <Compile Include="Models\Entities\ShopLapModel.cs" />
-    <Compile Include="Models\Entities\SubCategory.cs" />
-    <Compile Include="Models\Entities\sysdiagram.cs" />
+    <Compile Include="Models\DAO\ProductsDao.cs" />
     <Compile Include="Models\IndexData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -359,6 +354,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\less\oregional\" />
+    <Folder Include="Models\Entities\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
