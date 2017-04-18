@@ -15,20 +15,23 @@ namespace WebsiteBanHang.Controllers
         public ActionResult Index()
         {
             CategoryDao categoryDao = new CategoryDao();
+            ProductsDao productDao = new ProductsDao();
             IndexData data = new IndexData {
                 listCategory = categoryDao.GetCategory(),
-                featuredProducts = getFeaturedProducts(),
-                lastestProducts = getLastestProducts()
+                featuredProducts = productDao.GetFeaturedProducts(),
+                lastestProducts = productDao.GetLastestProducts()
             };
             return View(data);
         }
 
         public ActionResult Products(string type)
         {
-            List<Product> list = getProducts(type);
+            CategoryDao categoryDao = new CategoryDao();
+            ProductsDao productDao = new ProductsDao();
+            IQueryable<Product> list = productDao.GetProducts(type);
             IndexData data = new IndexData
             {
-                listCategory = getCategory(),
+                listCategory = categoryDao.GetCategory(),
                 listProductsType = list
             };
             return View(data);

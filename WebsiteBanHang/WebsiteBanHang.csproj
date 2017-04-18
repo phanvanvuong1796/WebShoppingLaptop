@@ -330,7 +330,7 @@
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Product.cs" />
     <Compile Include="Models\Entities\ProductDetail.cs" />
-    <Compile Include="Models\Entities\ShopLapModel.cs" />
+    <Compile Include="Models\Entities\ShopLaptopModel.cs" />
     <Compile Include="Models\Entities\SubCategory.cs" />
     <Compile Include="Models\IndexData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

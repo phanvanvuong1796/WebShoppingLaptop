@@ -9,9 +9,9 @@ namespace WebsiteBanHang.Models
     public class IndexData
     {
         public IQueryable<Category> listCategory { get; set; }
-        public List<Product> lastestProducts { get; set; }
+        public IQueryable<Product> lastestProducts { get; set; }
         public List<List<Product>> featuredProducts { get; set; }
-        public List<Product> listProductsType { get; set; }
+        public IQueryable<Product> listProductsType { get; set; }
         public Product productsDetail { get; set; }
     }
 }

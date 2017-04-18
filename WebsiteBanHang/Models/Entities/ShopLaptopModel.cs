@@ -5,10 +5,10 @@ namespace WebsiteBanHang.Models.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class ShopLapModel : DbContext
+    public partial class ShopLaptopModel : DbContext
     {
-        public ShopLapModel()
-            : base("name=ShopModel")
+        public ShopLaptopModel()
+            : base("name=ShopLaptopModel")
         {
         }
 
@@ -29,6 +29,12 @@ namespace WebsiteBanHang.Models.Entities
                 .Property(e => e.dongia)
                 .HasPrecision(18, 0);
 
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.ProductDetails)
+                .WithOptional(e => e.Product)
+                .HasForeignKey(e => e.masanpham)
+                .WillCascadeOnDelete();
+
             modelBuilder.Entity<ProductDetail>()
                 .Property(e => e.ram)
                 .IsUnicode(false);
@@ -48,10 +54,6 @@ namespace WebsiteBanHang.Models.Entities
             modelBuilder.Entity<ProductDetail>()
                 .Property(e => e.vixuly)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<ProductDetail>()
-                .HasOptional(e => e.Product)
-                .WithRequired(e => e.ProductDetail);
 
             modelBuilder.Entity<SubCategory>()
                 .HasMany(e => e.Products)
