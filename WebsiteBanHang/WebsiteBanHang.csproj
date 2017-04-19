@@ -127,6 +127,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Assets\data\flot-data.js" />
+    <Content Include="Areas\Admin\Assets\data\morris-data.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -313,6 +315,14 @@
     <Content Include="Content\themes\less\variables.less" />
     <Content Include="Content\themes\less\wells.less" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAd\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAd\ProductManager.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\AddDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductManager\EditDetail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -323,12 +333,17 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductManagerController.cs" />
+    <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\CategoryDao.cs" />
     <Compile Include="Models\DAO\ProductsDao.cs" />
+    <Compile Include="Models\DAO\UserDao.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Product.cs" />
     <Compile Include="Models\Entities\ProductDetail.cs" />
@@ -361,9 +376,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Admin\Assets\dist\" />
+    <Folder Include="Areas\Admin\Assets\js\" />
+    <Folder Include="Areas\Admin\Assets\less\" />
+    <Folder Include="Areas\Admin\Assets\vendor\" />
     <Folder Include="Content\themes\less\oregional\" />
   </ItemGroup>
   <PropertyGroup>

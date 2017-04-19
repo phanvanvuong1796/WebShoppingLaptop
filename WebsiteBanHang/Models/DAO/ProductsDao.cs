@@ -57,5 +57,78 @@ namespace WebsiteBanHang.Models.DAO
             Product rs = model.Products.Find(ma);
             return rs;
         }
+
+        public IQueryable<Product> GetAllProduct()
+        {
+            var rsPro = (from s in model.Products
+                         select s);
+            return rsPro;
+        }
+
+        public bool AddProduct(Product product)
+        {
+            try
+            {
+                model.Products.Add(product);
+                model.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+
+        public bool EditProduct(Product product)
+        {
+            Product pro = model.Products.Find(product.ma);
+            ProductDetail proDetail = model.ProductDetails.Find(product.ma);
+            try
+            {
+                pro.tensanpham = product.tensanpham;
+                pro.dongia = product.dongia;
+                pro.hangsanxuat = product.hangsanxuat;
+                pro.soluong = product.soluong;
+                pro.producttype = product.producttype;
+                pro.imglink = product.imglink;
+                pro.mota = product.mota;
+                proDetail.ram = product.ProductDetail.ram;
+                proDetail.diacung = product.ProductDetail.diacung;
+                proDetail.vga = product.ProductDetail.vga;
+                proDetail.manhinh = product.ProductDetail.manhinh;
+                proDetail.vixuly = product.ProductDetail.vixuly;
+                model.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeleteProduct(string ma)
+        {
+            Product pro = model.Products.Find(ma);
+            ProductDetail proDetail = model.ProductDetails.Find(ma);
+            if (pro != null)
+            {
+                model.Products.Remove(pro);
+                model.ProductDetails.Remove(proDetail);
+                model.SaveChanges();
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+
+        public Product FindProduct(string ma)
+        {
+            Product pro = model.Products.Find(ma);
+            ProductDetail proDetail = model.ProductDetails.Find(ma);
+            return pro;
+        }
     }
 }
