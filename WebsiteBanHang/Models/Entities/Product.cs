@@ -26,7 +26,7 @@ namespace WebsiteBanHang.Models.Entities
         [StringLength(50)]
         public string producttype { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string imglink { get; set; }
 
         public string mota { get; set; }

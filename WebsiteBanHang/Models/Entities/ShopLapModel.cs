@@ -8,7 +8,7 @@ namespace WebsiteBanHang.Models.Entities
     public partial class ShopLapModel : DbContext
     {
         public ShopLapModel()
-            : base("name=ShopLapModel1")
+            : base("name=ShopLapModel2")
         {
         }
 
@@ -16,6 +16,7 @@ namespace WebsiteBanHang.Models.Entities
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
