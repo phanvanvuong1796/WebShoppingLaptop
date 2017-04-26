@@ -17,13 +17,17 @@ namespace WebsiteBanHang.Models.Entities
 
         [Key]
         [StringLength(50)]
+        [Display(Name ="Mã danh mục con")]
         public string mahienthi { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Tên danh mục con")]
         public string tendanhmuccon { get; set; }
 
+        [Display(Name = "Số lượng")]
         public int? soluong { get; set; }
 
+        //[Display(Name = "Mã danh mục con")]
         public Guid? danhmucma { get; set; }
 
         public virtual Category Category { get; set; }

@@ -26,5 +26,12 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             IQueryable<Product> list = dao.GetAllProduct();
             return View(list);
         }
+
+        public ActionResult CategoryManager()
+        {
+            CategoryDao dao = new CategoryDao();
+            IQueryable<Category> lisCate = dao.GetCategory();
+            return View(lisCate);
+        }
     }
 }

@@ -26,5 +26,11 @@ namespace WebsiteBanHang.Models.DAO
             }
             
         }
+
+        public IQueryable<User> ListUser()
+        {
+            var rs = (from s in model.Users select s);
+            return rs;
+        }
     }
 }

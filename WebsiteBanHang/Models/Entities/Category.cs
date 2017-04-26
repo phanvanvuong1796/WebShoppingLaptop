@@ -16,11 +16,14 @@ namespace WebsiteBanHang.Models.Entities
         }
 
         [Key]
+        [Display(Name ="Mã danh mục")]
         public Guid ma { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Tên danh mục")]
         public string tendanhmuc { get; set; }
 
+        [Display(Name = "Số lượng")]
         public int? soluong { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

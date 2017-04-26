@@ -26,6 +26,9 @@
                 @Html.DisplayNameFor(model => model.hangsanxuat)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.imglink)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ProductDetail.ram)
             </th>
             <th>
@@ -48,6 +51,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.hangsanxuat)
+                </td>
+                <td>
+                    <div><img src="@Url.Content(item.imglink)" width="100px" height="100px"/></div>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductDetail.ram)

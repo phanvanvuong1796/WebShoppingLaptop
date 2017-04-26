@@ -35,5 +35,87 @@ namespace WebsiteBanHang.Models.DAO
             var rsCate = (from s in shopLapModel.Categories select s);
             return rsCate;
         }
+
+        public bool AddCategory(Category category)
+        {
+            try
+            {
+                shopLapModel.Categories.Add(category);
+                shopLapModel.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public IQueryable<SubCategory> GetSubCategory(Guid ma)
+        {
+            var rs = (from s in shopLapModel.SubCategories
+                      where s.danhmucma == ma
+                      select s);
+            return rs;
+        }
+
+        public bool EditCategory(Category category)
+        {
+            Category cate = shopLapModel.Categories.Find(category.ma);
+            try
+            {
+               
+                cate.tendanhmuc = category.tendanhmuc;
+                cate.soluong = category.soluong;
+                shopLapModel.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+
+        public bool DeleteCategory(Guid ma)
+        {
+            Category category = shopLapModel.Categories.Find(ma);
+            if(category.SubCategories.Count == 0)
+            {
+                shopLapModel.Categories.Remove(category);
+                shopLapModel.SaveChanges();
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+
+        public bool AddSubCategory(SubCategory subCate)
+        {
+            try
+            {
+                shopLapModel.SubCategories.Add(subCate);
+                shopLapModel.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Category FindCategory(Guid ma)
+        {
+            Category category = shopLapModel.Categories.Find(ma);
+            return category;
+        }
+
+        public SubCategory FindSubCategory(Guid ma)
+        {
+            SubCategory subCategory = shopLapModel.SubCategories.Find(ma);
+            return subCategory;
+        }
+
+        
     }
 }

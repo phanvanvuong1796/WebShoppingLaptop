@@ -323,6 +323,11 @@
     <Content Include="Areas\Admin\Views\ProductManager\AddDetail.cshtml" />
     <Content Include="Areas\Admin\Views\ProductManager\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ProductManager\EditDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAd\CategoryManager.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryManager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryManager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryManager\CreateSubCategory.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -333,6 +338,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductManagerController.cs" />
