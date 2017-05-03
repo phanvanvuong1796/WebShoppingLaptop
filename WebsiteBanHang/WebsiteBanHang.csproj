@@ -331,6 +331,11 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -344,12 +349,15 @@
     <Compile Include="Areas\Admin\Controllers\ProductManagerController.cs" />
     <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bean\ItemCart.cs" />
+    <Compile Include="Models\Bean\ShoppingCart.cs" />
     <Compile Include="Models\DAO\CategoryDao.cs" />
     <Compile Include="Models\DAO\ProductsDao.cs" />
-    <Compile Include="Models\DAO\UserDao.cs" />
+    <Compile Include="Views\Shared\UserDao.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Product.cs" />
     <Compile Include="Models\Entities\ProductDetail.cs" />
@@ -387,6 +395,7 @@
     <Folder Include="Areas\Admin\Assets\less\" />
     <Folder Include="Areas\Admin\Assets\vendor\" />
     <Folder Include="Content\themes\less\oregional\" />
+    <Folder Include="Views\ShoppingCart\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
