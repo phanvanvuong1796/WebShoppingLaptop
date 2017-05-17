@@ -8,11 +8,13 @@ namespace WebsiteBanHang.Models.Entities
     public partial class ShopLapModel : DbContext
     {
         public ShopLapModel()
-            : base("name=ShopLapModel3")
+            : base("name=ShopLapModel4")
         {
         }
 
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
@@ -25,6 +27,10 @@ namespace WebsiteBanHang.Models.Entities
                 .WithOptional(e => e.Category)
                 .HasForeignKey(e => e.danhmucma)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<OrderDetail>()
+                .Property(e => e.dongia)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.dongia)

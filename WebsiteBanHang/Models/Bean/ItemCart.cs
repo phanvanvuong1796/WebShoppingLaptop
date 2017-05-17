@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebsiteBanHang.Models.Entities;
 
 namespace WebsiteBanHang.Models.Bean
 {
     public class ItemCart
     {
-        public string ma { get; set; }
-        public string tensanpham { get; set; }
+        public Product Product { get; set; }
         public int soluong { get; set; }
-        public double dongia { get; set; }
-        public string imglink { get; set; }
 
         public double GetTotal()
         {
-            return soluong * dongia;
+            return soluong * (double) Product.dongia;
         }
     }
 }

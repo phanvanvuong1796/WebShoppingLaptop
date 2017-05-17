@@ -356,9 +356,13 @@
     <Compile Include="Models\Bean\ItemCart.cs" />
     <Compile Include="Models\Bean\ShoppingCart.cs" />
     <Compile Include="Models\DAO\CategoryDao.cs" />
+    <Compile Include="Models\DAO\OrderDao.cs" />
+    <Compile Include="Models\DAO\OrderDetailDao.cs" />
     <Compile Include="Models\DAO\ProductsDao.cs" />
-    <Compile Include="Views\Shared\UserDao.cs" />
+    <Compile Include="Models\DAO\UserDao.cs" />
     <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\Entities\Order.cs" />
+    <Compile Include="Models\Entities\OrderDetail.cs" />
     <Compile Include="Models\Entities\Product.cs" />
     <Compile Include="Models\Entities\ProductDetail.cs" />
     <Compile Include="Models\Entities\ShopLapModel.cs" />
@@ -381,6 +385,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\ProductsDetail.cshtml" />
+    <Content Include="Views\ShoppingCart\List.cshtml" />
+    <Content Include="Views\ShoppingCart\Payment.cshtml" />
+    <Content Include="Views\ShoppingCart\Success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -395,7 +402,6 @@
     <Folder Include="Areas\Admin\Assets\less\" />
     <Folder Include="Areas\Admin\Assets\vendor\" />
     <Folder Include="Content\themes\less\oregional\" />
-    <Folder Include="Views\ShoppingCart\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

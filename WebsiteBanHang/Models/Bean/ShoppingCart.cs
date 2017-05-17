@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebsiteBanHang.Models.Entities;
 
 namespace WebsiteBanHang.Models.Bean
 {
@@ -9,12 +10,12 @@ namespace WebsiteBanHang.Models.Bean
     {
         public List<ItemCart> listItem = new List<ItemCart>();
 
-        public void AddItem(string ma, string tensanpham, int soluong, double dongia, string imglink)
+        public void AddItem(Product product, int soluong)
         {
-            bool check = true;
+            bool check = false;
             foreach(var itemTmp in listItem)
             {
-                if(itemTmp.ma == ma)
+                if (itemTmp.Product.ma == product.ma)
                 {
                     check = true;
                     itemTmp.soluong += soluong;
@@ -24,12 +25,30 @@ namespace WebsiteBanHang.Models.Bean
             if (!check)
             {
                 ItemCart item = new ItemCart();
-                item.ma = ma;
-                item.tensanpham = tensanpham;
+                item.Product = product;
                 item.soluong = soluong;
-                item.dongia = dongia;
-                item.imglink = imglink;
                 listItem.Add(item);
+            }
+        }
+
+        public void SubItem(Product product, int soluong)
+        {
+            bool check = false;
+            foreach(var itemTmp in listItem)
+            {
+                if(itemTmp.Product.ma == product.ma)
+                {
+                    check = true;
+                    itemTmp.soluong -= soluong;
+                    break;
+                }
+            }
+            if (!check)
+            {
+                ItemCart item = new ItemCart();
+                item.Product = product;
+                item.soluong = soluong;
+                listItem.Remove(item);
             }
         }
 
@@ -37,9 +56,21 @@ namespace WebsiteBanHang.Models.Bean
         {
             foreach(var itemTmp in listItem)
             {
-                if(itemTmp.ma == ma)
+                if(itemTmp.Product.ma == ma)
                 {
                     itemTmp.soluong += soluong;
+                    break;
+                }
+            }
+        }
+
+        public void SubAmount(string ma, int soluong)
+        {
+            foreach(var itemTmp in listItem)
+            {
+                if(itemTmp.Product.ma == ma)
+                {
+                    itemTmp.soluong -= soluong;
                     break;
                 }
             }
@@ -49,7 +80,7 @@ namespace WebsiteBanHang.Models.Bean
         {
             foreach(var itemTmp in listItem)
             {
-                if(itemTmp.ma == ma)
+                if(itemTmp.Product.ma == ma)
                 {
                     listItem.Remove(itemTmp);
                     break;
