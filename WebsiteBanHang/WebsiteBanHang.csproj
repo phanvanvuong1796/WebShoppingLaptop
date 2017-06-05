@@ -84,6 +84,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -131,6 +139,7 @@
     <Content Include="Areas\Admin\Assets\data\morris-data.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\amelia\bootstrap.css" />
     <Content Include="Content\themes\amelia\bootstrap.min.css" />
@@ -356,6 +365,7 @@
     <Compile Include="Models\Bean\ItemCart.cs" />
     <Compile Include="Models\Bean\ShoppingCart.cs" />
     <Compile Include="Models\DAO\CategoryDao.cs" />
+    <Compile Include="Models\DAO\DatabaseContext.cs" />
     <Compile Include="Models\DAO\CustomerDAO.cs" />
     <Compile Include="Models\DAO\OrderDao.cs" />
     <Compile Include="Models\DAO\OrderDetailDao.cs" />
@@ -369,6 +379,7 @@
     <Compile Include="Models\Entities\ProductDetail.cs" />
     <Compile Include="Models\Entities\ShopLapModel.cs" />
     <Compile Include="Models\Entities\SubCategory.cs" />
+    <Compile Include="Models\Entities\sysdiagram.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\IndexData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -387,6 +398,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\ProductsDetail.cshtml" />
+    <Content Include="Views\Home\ProductSearch.cshtml" />
+    <Content Include="Views\Home\ProductsPromosion.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\ShoppingCart\List.cshtml" />
     <Content Include="Views\ShoppingCart\Payment.cshtml" />
     <Content Include="Views\ShoppingCart\DatHang.cshtml" />

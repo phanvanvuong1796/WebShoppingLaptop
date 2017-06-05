@@ -1,4 +1,6 @@
-﻿using System;
+﻿////////////////////using System;
+using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +14,7 @@ namespace WebsiteBanHang.Models
         public IQueryable<Category> listCategory { get; set; }
         public IQueryable<Product> lastestProducts { get; set; }
         public List<List<Product>> featuredProducts { get; set; }
-        public IQueryable<Product> listProductsType { get; set; }
+        public IPagedList<Product> listProductsType { get; set; }
         public Product productsDetail { get; set; }
         public List<ItemCart> listItemCart { get; set; }
     }

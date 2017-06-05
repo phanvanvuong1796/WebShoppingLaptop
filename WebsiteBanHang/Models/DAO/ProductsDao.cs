@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using WebsiteBanHang.Models.Entities;
+using PagedList;
 
 namespace WebsiteBanHang.Models.DAO
 {
     public class ProductsDao
     {
         ShopLapModel model;
+        ShopLapModel db = new ShopLapModel();
         public ProductsDao()
         {
             model = new ShopLapModel();
@@ -46,10 +50,35 @@ namespace WebsiteBanHang.Models.DAO
 
         public IQueryable<Product> GetProducts(string type)
         {
-            var rsProduct = (from s in model.Products
-                             where s.producttype == type
-                             select s);
+            //var context = new DatabaseContext();
+            //var gettype = new SqlParameter("@type", type);
+            //var getid = new SqlParameter("@sotrang", i);
+            //var rsProduct = context.Database.SqlQuery<Product>(" exec SP_PhanTrang @type, @sotrang", type, i).ToList();
+
+            var rsProduct = from s in model.Products
+                            where s.producttype == type
+                            where s.soluong > 0
+                            orderby s.ma descending
+                            select s;
+            //rsProduct = rsProduct.ToPagedList.ToPagedList(pageNumber, pageSize);
             return rsProduct;
+        }
+
+        public List<Product> SearchProduct(string key)
+        {
+            string search = "";
+            try
+            {
+                double x = double.Parse(key);
+                search = "select * from Product where dongia <= "+key +"and soluong >0";
+            }
+            catch
+            {
+                search = "select * from Product where tensanpham like N'%" + key + "%' or hangsanxuat like N'%" + key + "%' or mota like N'%" + key + "%' and soluong >0";
+            }
+            //string search = "select * from Product where tensanpham like N'%" + key + "%'";
+            var rs = db.Products.SqlQuery(search).ToList();
+            return rs;
         }
 
         public Product GetProductDetail(string ma)
@@ -61,6 +90,7 @@ namespace WebsiteBanHang.Models.DAO
         public IQueryable<Product> GetAllProduct()
         {
             var rsPro = (from s in model.Products
+                         where s.soluong > 0
                          select s);
             return rsPro;
         }
@@ -130,5 +160,6 @@ namespace WebsiteBanHang.Models.DAO
             ProductDetail proDetail = model.ProductDetails.Find(ma);
             return pro;
         }
+    
     }
 }

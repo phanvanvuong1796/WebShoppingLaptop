@@ -4995,6 +4995,8 @@ a.thumbnail:focus {
 }
 
 .thumbnail .caption {
+  font-size 14px;
+  magin 8px 0;
   padding: 9px;
   color: #333333;
 }
