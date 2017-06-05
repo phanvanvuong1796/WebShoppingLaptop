@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebsiteBanHang.Models;
 using WebsiteBanHang.Models.DAO;
 using WebsiteBanHang.Models.Entities;
+using WebsiteBanHang.Models.Bean;
 using PagedList;
 using PagedList.Mvc;
 
@@ -18,8 +19,12 @@ namespace WebsiteBanHang.Controllers
         {
             CategoryDao categoryDao = new CategoryDao();
             ProductsDao productDao = new ProductsDao();
-            IndexData data = new IndexData
+            ShoppingCart Cart = (ShoppingCart)Session["cart"];
+            if (Cart == null)
             {
+                Session["cart"] = new ShoppingCart();
+            }
+            IndexData data = new IndexData {
                 listCategory = categoryDao.GetCategory(),
                 featuredProducts = productDao.GetFeaturedProducts(),
                 lastestProducts = productDao.GetLastestProducts()
