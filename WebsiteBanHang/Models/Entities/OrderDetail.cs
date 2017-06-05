@@ -22,5 +22,7 @@ namespace WebsiteBanHang.Models.Entities
         public int? soluong { get; set; }
 
         public decimal? dongia { get; set; }
+
+        public virtual Order Order { get; set; }
     }
 }

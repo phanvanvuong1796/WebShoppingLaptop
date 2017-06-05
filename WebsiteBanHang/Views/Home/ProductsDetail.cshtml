@@ -48,6 +48,7 @@
                 </div>
             </div>
         </div>
+
         <div class="span6">
             <h3>@product.tensanpham  </h3>
             <small>@product.mota</small>
@@ -56,8 +57,8 @@
                 <div class="control-group">
                     <label class="control-label"><span>@product.dongia</span></label>
                     <div class="controls">
-                        <input type="number" class="span1" placeholder="Số lượng" />
-                        <button type="submit" class="btn btn-large btn-primary pull-right"> Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></button>
+                        @*<input type="number" class="span1" placeholder="Số lượng" />*@
+                        <a class="btn btn-large btn-primary pull-right" href="/ShoppingCart/Add?ma=@product.ma&&soluong=1"> Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a>
                     </div>
                 </div>
             </form>
@@ -65,7 +66,7 @@
             <hr class="soft" />
             <h4>Còn hàng</h4>
             <form class="form-horizontal qtyFrm pull-right">
-                <div class="control-group">
+                @*<div class="control-group">
                     <label class="control-label"><span>Màu sắc</span></label>
                     <div class="controls">
                         <select class="span2">
@@ -75,7 +76,7 @@
                             <option>Hường</option>
                         </select>
                     </div>
-                </div>
+                </div>*@
             </form>
             <hr class="soft clr" />
             <p>
