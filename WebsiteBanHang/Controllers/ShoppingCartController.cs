@@ -199,6 +199,7 @@ namespace WebsiteBanHang.Controllers
             List<ItemCart> listItem = new List<ItemCart>();
             IndexData data = new IndexData();
             data.listCategory = categoryDao.GetCategory();
+
             if (Cart != null)
             {
                 data.listItemCart = Cart.listItem;
@@ -209,11 +210,18 @@ namespace WebsiteBanHang.Controllers
                     detail.masanpham = item.Product.ma;
                     detail.soluong = item.soluong;
                     detail.dongia = item.Product.dongia;
+                    Product sp = model.Products.Find(detail.masanpham);
+                    sp.soluong = sp.soluong - item.soluong;
+                    SubCategory subcategory = model.SubCategories.Find(sp.producttype);
+                    subcategory.soluong = subcategory.soluong - item.soluong;
+                    Category category = model.Categories.Find(subcategory.danhmucma);
+                    category.soluong = category.soluong - item.soluong;
                     model.OrderDetails.Add(detail);
                     model.SaveChanges();
                 }
                 ViewData["DonHang"] = order;
             }
+
             return View(data);
         }
     }

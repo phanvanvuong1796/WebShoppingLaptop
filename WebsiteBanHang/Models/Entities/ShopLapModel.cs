@@ -8,7 +8,7 @@ namespace WebsiteBanHang.Models.Entities
     public partial class ShopLapModel : DbContext
     {
         public ShopLapModel()
-            : base("name=ShopLapModel8")
+            : base("name=ShopLapModel9")
         {
         }
 
