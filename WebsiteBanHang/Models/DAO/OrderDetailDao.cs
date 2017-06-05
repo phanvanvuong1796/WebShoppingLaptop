@@ -14,18 +14,10 @@ namespace WebsiteBanHang.Models.DAO
             model = new ShopLapModel();
         }
 
-        public bool Insert(OrderDetail detail)
+        public IQueryable<OrderDetail> ChitietGH(int mahd)
         {
-            try
-            {
-                model.OrderDetails.Add(detail);
-                model.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            var res = (from sp in model.OrderDetails where sp.madathang == mahd select sp);
+            return res;
         }
     }
 }

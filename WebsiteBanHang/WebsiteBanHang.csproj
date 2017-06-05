@@ -372,7 +372,8 @@
     <Compile Include="Models\Bean\ItemCart.cs" />
     <Compile Include="Models\Bean\ShoppingCart.cs" />
     <Compile Include="Models\DAO\CategoryDao.cs" />
-    <Compile Include="Models\DAO\CustomerDao.cs" />
+    <Compile Include="Models\DAO\DatabaseContext.cs" />
+    <Compile Include="Models\DAO\CustomerDAO.cs" />
     <Compile Include="Models\DAO\OrderDao.cs" />
     <Compile Include="Models\DAO\OrderDetailDao.cs" />
     <Compile Include="Models\DAO\ProductsDao.cs" />
@@ -385,6 +386,7 @@
     <Compile Include="Models\Entities\ProductDetail.cs" />
     <Compile Include="Models\Entities\ShopLapModel.cs" />
     <Compile Include="Models\Entities\SubCategory.cs" />
+    <Compile Include="Models\Entities\sysdiagram.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\IndexData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -403,9 +405,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\ProductsDetail.cshtml" />
+    <Content Include="Views\Home\ProductSearch.cshtml" />
+    <Content Include="Views\Home\ProductsPromosion.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\ShoppingCart\List.cshtml" />
     <Content Include="Views\ShoppingCart\Payment.cshtml" />
-    <Content Include="Views\ShoppingCart\Success.cshtml" />
+    <Content Include="Views\ShoppingCart\DatHang.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

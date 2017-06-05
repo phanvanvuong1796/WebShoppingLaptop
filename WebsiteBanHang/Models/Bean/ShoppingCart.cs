@@ -107,5 +107,13 @@ namespace WebsiteBanHang.Models.Bean
             }
             return soluong;
         }
+
+        public void DeleteAll()
+        {
+            foreach(var itemTmp in listItem)
+            {
+                listItem=null;
+            }
+        }
     }
 }

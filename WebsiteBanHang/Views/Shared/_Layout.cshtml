@@ -2,7 +2,7 @@
 @using WebsiteBanHang.Models.Entities;
 @using WebsiteBanHang.Models.Bean;
 @{
-    //Commit change
+    //Commit changes
     IQueryable<Category> listCategory = Model.listCategory;
     int i = 0;
     ShoppingCart Cart = (ShoppingCart)Session["cart"];
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
     <meta charset="utf-8">
     <title>Bán laptop uy tín</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,14 +44,12 @@
     <div id="header">
         <div class="container">
             <div id="welcomeLine" class="row">
-                <div class="span6">Xin chào!<strong> Khách</strong></div>
+                <div class="span6">Xin chào!<strong> Quý Khách</strong></div>
                 <div class="span6">
                     <div class="pull-right">
-                        <a href="product_summary.html"><span class="">Ru</span></a>
-                        <a href="product_summary.html"><span class="">En</span></a>
-                        <span class="btn btn-mini">Vn</span>
-                        <a href="product_summary.html"><span>&pound;</span></a>
-                        <span class="btn btn-mini">$@Cart.GetTotalCart()</span>
+                        @*<a href="product_summary.html"><span>&pound;</span></a>*@
+                        @{ string gia = double.Parse(Cart.GetTotalCart().ToString()).ToString("#,###") + "  VNĐ"; }
+                        <span class="btn btn-mini">@gia</span>
                         <a href="/ShoppingCart/List"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ @Cart.GetAmount() ] Sản phẩm trong giỏ của bạn </span> </a>
                     </div>
                 </div>
@@ -65,55 +63,61 @@
                 </a>
                 <div class="navbar-inner">
                     <a class="brand" href="/Home/Index"><img src="/Content/themes/images/vienlogo.png" alt="Bootsshop" /></a>
-                    <form class="form-inline navbar-search" method="post" action="products.html">
-                        <input id="srchFld" class="srchTxt" type="text" />
-                        <select class="srchTxt">
-                            <option>Tất cả</option>
-                            @*<option>CLOTHES </option>
-                            <option>FOOD AND BEVERAGES </option>
-                            <option>HEALTH & BEAUTY </option>
-                            <option>SPORTS & LEISURE </option>
-                            <option>BOOKS & ENTERTAINMENTS </option>*@
-                        </select>
-                        <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
-                    </form>
-                    <ul id="topMenu" class="nav pull-right">
-                        <li class=""><a href="special_offer.html">Khuyến mãi</a></li>
-                        @*<li class=""><a href="normal.html">Delivery</a></li>*@
-                        <li class=""><a href="contact.html">Liên hệ</a></li>
-                        <li class="">
-                            <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Đăng nhập</span></a>
-                            <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h3>Login Block</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal loginFrm">
-                                        <div class="control-group">
-                                            <input type="text" id="inputEmail" placeholder="Email">
-                                        </div>
-                                        <div class="control-group">
-                                            <input type="password" id="inputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="checkbox">
-                                                <input type="checkbox"> Remember me
-                                            </label>
-                                        </div>
-                                    </form>
-                                    <button type="submit" class="btn btn-success">Sign in</button>
-                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </div>
+                    @*<input id="srchFld" class="srchTxt" type="text" />
+                        <button type="submit" id="submitButton" class="btn btn-primary">Go</button>*@
+
+                   
+                        @using (Html.BeginForm("ProductSearch", "Home"))
+                        {
+                            <div class="form-inline navbar-search">
+                                <input id="srchFld" class="srchTxt" type="text" style="align-self:center" name="key" />
+                                @*<select class="srchTxt">
+                                    <option>Tất cả</option>
+                                    <option>Tên sản phẩm</option>
+                                    <option>Hãng sản xuất</option>
+                                    <option>Giá tiền</option>
+                                </select>*@
+                                <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                             </div>
-                        </li>
-                    </ul>
-                </div>
+                        }
+                               
+
+                                <ul id="topMenu" class="nav pull-right">
+                                    <li class=""><a href="/Home/ProductsPromosion">Khuyến mãi</a></li>                                  
+                                    <li class=""><a href="/Home/Contact">Liên hệ</a></li>
+                                    <li class="">
+                                        <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Đăng nhập</span></a>
+                                        <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h3>Login Block</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal loginFrm">
+                                                    <div class="control-group">
+                                                        <input type="text" id="inputEmail" placeholder="Email">
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <input type="password" id="inputPassword" placeholder="Password">
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label class="checkbox">
+                                                            <input type="checkbox"> Remember me
+                                                        </label>
+                                                    </div>
+                                                </form>
+                                                <button type="submit" class="btn btn-success">Sign in</button>
+                                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+</div>
             </div>
         </div>
     </div>
     <!-- Header End====================================================================== -->
-    
+
     <div id="mainBody">
         <div class="container">
             <div class="row">
@@ -154,56 +158,54 @@
                         }
 
                         @*<li class="subMenu open">
-                            <a> LAPTOP PHỔ THÔNG [100]</a>
-                            <ul>
-                                <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Laptop Dell (30) </a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP (30)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Lenovo (20)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Asus (20)</a></li>
-                            </ul>
-                        </li>
-                        <li class="subMenu">
-                            <a> LAPTOP WORKSTATION [50] </a>
-                            <ul style="display:none">
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Dell workstation (20)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP workstation (12)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop ThinkPad workstation (8)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop MSI workstation  (10)</a></li>
-                            </ul>
-                        </li>
-                        <li class="subMenu">
-                            <a> LAPTOP GAMING [150]</a>
-                            <ul style="display:none">
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop MSI Gaming (50)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Dell Alienware (20)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Asus ROG (30)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP Gaming  (25)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Lenovo Gaming (25)</a></li>
-                                
-                            </ul>
-                        </li>
-                        <li class="subMenu">
-                            <a> LAPTOP BUSINESS [50]</a>
-                            <ul style="display:none">
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP Elitebook (10)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Dell Latitude (20)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Lenovo ThinkPad (25)</a></li>
-                            </ul>
-                        </li>*@
+                                <a> LAPTOP PHỔ THÔNG [100]</a>
+                                <ul>
+                                    <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Laptop Dell (30) </a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP (30)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Lenovo (20)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Asus (20)</a></li>
+                                </ul>
+                            </li>
+                            <li class="subMenu">
+                                <a> LAPTOP WORKSTATION [50] </a>
+                                <ul style="display:none">
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Dell workstation (20)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP workstation (12)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop ThinkPad workstation (8)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop MSI workstation  (10)</a></li>
+                                </ul>
+                            </li>
+                            <li class="subMenu">
+                                <a> LAPTOP GAMING [150]</a>
+                                <ul style="display:none">
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop MSI Gaming (50)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Dell Alienware (20)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Asus ROG (30)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP Gaming  (25)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Lenovo Gaming (25)</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="subMenu">
+                                <a> LAPTOP BUSINESS [50]</a>
+                                <ul style="display:none">
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop HP Elitebook (10)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Dell Latitude (20)</a></li>
+                                    <li><a href="products.html"><i class="icon-chevron-right"></i>Laptop Lenovo ThinkPad (25)</a></li>
+                                </ul>
+                            </li>*@
                     </ul>
-                    <br />
+                    <br />                    
                     <div class="thumbnail">
                         <img src="/Content/themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera" />
                         <div class="caption">
-                            <h5>Acer</h5>
-                            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+                            <h5 style="font-size:large">Acer</h5>                          
                         </div>
                     </div><br />
                     <div class="thumbnail">
                         <img src="/Content/themes/images/products/macbook.jpg" title="Bootshop New Kindel" alt="Bootshop Kindel">
                         <div class="caption">
-                            <h5>Macbook Air</h5>
-                            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+                            <h5 style="font-size:large">Macbook Air</h5>                            
                         </div>
                     </div><br />
                     <div class="thumbnail">
@@ -224,19 +226,19 @@
             <div class="row">
                 <div class="span3">
                     <h5>TÀI KHOẢN</h5>
-                    <a href="login.html">TÀI KHOẢN CỦA BẠN</a>
-                    <a href="login.html">THÔNG TIN CÁ NHÂN</a>
-                    <a href="login.html">ĐỊA CHỈ</a>
-                    <a href="login.html">GIẢM GIÁ</a>
-                    <a href="login.html">LỊCH SỬ ĐƠN HÀNG</a>
+                    <a href="#">TÀI KHOẢN CỦA BẠN</a>
+                    <a href="#">THÔNG TIN CÁ NHÂN</a>
+                    <a href="#">ĐỊA CHỈ</a>
+                    <a href="#">GIẢM GIÁ</a>
+                    <a href="#">LỊCH SỬ ĐƠN HÀNG</a>
                 </div>
                 <div class="span3">
                     <h5>THÔNG TIN</h5>
-                    <a href="contact.html">LIÊN HỆ</a>
-                    <a href="register.html">ĐĂNG KÝ</a>
-                    <a href="legal_notice.html">ĐIỀU KHOẢN</a>
-                    <a href="tac.html">ĐIỀU KHOẢN VÀ ĐIỀU KIỆN</a>
-                    <a href="faq.html">FAQ</a>
+                    <a href="#">LIÊN HỆ</a>
+                    <a href="#">ĐĂNG KÝ</a>
+                    <a href="#">ĐIỀU KHOẢN</a>
+                    <a href="#">ĐIỀU KHOẢN VÀ ĐIỀU KIỆN</a>
+                    <a href="#">FAQ</a>
                 </div>
                 <div class="span3">
                     <h5>OUR OFFERS</h5>
