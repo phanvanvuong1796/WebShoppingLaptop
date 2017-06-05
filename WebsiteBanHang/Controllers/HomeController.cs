@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using WebsiteBanHang.Models;
 using WebsiteBanHang.Models.DAO;
 using WebsiteBanHang.Models.Entities;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebsiteBanHang.Controllers
 {
@@ -16,7 +18,8 @@ namespace WebsiteBanHang.Controllers
         {
             CategoryDao categoryDao = new CategoryDao();
             ProductsDao productDao = new ProductsDao();
-            IndexData data = new IndexData {
+            IndexData data = new IndexData
+            {
                 listCategory = categoryDao.GetCategory(),
                 featuredProducts = productDao.GetFeaturedProducts(),
                 lastestProducts = productDao.GetLastestProducts()
@@ -24,16 +27,22 @@ namespace WebsiteBanHang.Controllers
             return View(data);
         }
 
-        public ActionResult Products(string type)
+        public ActionResult Products(string type, int? page)
         {
+            ViewBag.kieu = type;
             CategoryDao categoryDao = new CategoryDao();
             ProductsDao productDao = new ProductsDao();
             IQueryable<Product> list = productDao.GetProducts(type);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            IPagedList<Product> a = list.ToPagedList(pageNumber, pageSize);
             IndexData data = new IndexData
             {
                 listCategory = categoryDao.GetCategory(),
-                listProductsType = list
+                listProductsType = a
             };
+
+            //return View(list.ToPagedList(pageNumber, pageSize));
             return View(data);
         }
 
@@ -46,11 +55,47 @@ namespace WebsiteBanHang.Controllers
             {
                 listCategory = categoryDao.GetCategory(),
                 productsDetail = productDao.GetProductDetail(ma)
-                
+
+            };
+            return View(data);
+        }
+       
+        public ActionResult ProductSearch(string key, int? page)
+        {
+            //ViewBag.chuoi = temp;
+            CategoryDao categoryDao = new CategoryDao();
+            ProductsDao productDao = new ProductsDao();
+            List<Product> list = productDao.SearchProduct(key);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            IPagedList<Product> a = list.ToPagedList(pageNumber, pageSize);
+            IndexData data = new IndexData
+            {
+                listCategory = categoryDao.GetCategory(),
+                listProductsType = a
             };
             return View(data);
         }
 
+        public ActionResult ProductsPromosion()
+        {
+            CategoryDao categoryDao = new CategoryDao();
+            IndexData data = new IndexData
+            {
+                listCategory = categoryDao.GetCategory()
+            };
+            return View(data);
+        }
+
+        public ActionResult Contact()
+        {
+            CategoryDao categoryDao = new CategoryDao();
+            IndexData data = new IndexData()
+            {
+                listCategory = categoryDao.GetCategory()
+            };
+            return View(data);
+        }
         //public List<Product> getProducts(string type)
         //{
         //    List<Product> list = new List<Product>();

@@ -50,13 +50,14 @@
         </div>
         <div class="span6">
             <h3>@product.tensanpham  </h3>
-            <small>@product.mota</small>
+            <small style="font-size:small">@product.mota</small>
             <hr class="soft" />
             <form class="form-horizontal qtyFrm">
                 <div class="control-group">
-                    <label class="control-label"><span>@product.dongia</span></label>
+                    @{string gia = double.Parse(product.dongia.ToString()).ToString("#,###") + " VNĐ";}
+                    <label class="control-label"><span>@gia</span></label>
                     <div class="controls">
-                        <input type="number" class="span1" placeholder="Số lượng" />
+                        @*<input type="number" class="span1" placeholder="Số lượng" />*@
                         <button type="submit" class="btn btn-large btn-primary pull-right"> Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></button>
                     </div>
                 </div>
@@ -66,7 +67,7 @@
             <h4>Còn hàng</h4>
             <form class="form-horizontal qtyFrm pull-right">
                 <div class="control-group">
-                    <label class="control-label"><span>Màu sắc</span></label>
+                    @*<label class="control-label"><span>Màu sắc</span></label>
                     <div class="controls">
                         <select class="span2">
                             <option>Đen</option>
@@ -74,11 +75,11 @@
                             <option>Tím</option>
                             <option>Hường</option>
                         </select>
-                    </div>
+                    </div>*@
                 </div>
             </form>
             <hr class="soft clr" />
-            <p>
+            <p style="font-size:medium">
                 @product.mota
             </p>
             <a class="btn btn-small pull-right" href="#detail">Thông tin thêm</a>

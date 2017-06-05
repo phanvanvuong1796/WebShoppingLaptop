@@ -23,45 +23,47 @@
                                     @foreach (var items in list)
                                     {
                                         <li class="span3">
-                                            <div class="thumbnail">
+                                            <div class="thumbnail" style="height:280px">
                                                 <i class="tag"></i>
                                                 <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt=""></a>
                                                 <div class="caption">
                                                     <h5>@items.tensanpham</h5>
-                                                    <h4><a class="btn" href="/Home/ProductsDetail?ma=@items.ma">XEM</a> <span class="pull-right">@items.dongia</span></h4>
+                                                    @{ string gia = double.Parse(items.dongia.ToString()).ToString("#,###") + "  VNĐ";}
+                                                    <h4><a class="btn" href="/Home/ProductsDetail?ma=@items.ma">XEM</a> <span class="pull-right" style="font-size:small">@gia</span></h4>
                                                 </div>
                                             </div>
                                         </li>
 
-                                    }
+                                                        }
 
                                 </ul>
                             </div>
-                        }
-                        else
-                        {
-                            <div class="item">
-                                <ul class="thumbnails">
-                                    @foreach (var items in list)
-                                    {
-                                        <li class="span3">
-                                            <div class="thumbnail">
-                                                <i class="tag"></i>
-                                                <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt=""></a>
-                                                <div class="caption">
-                                                    <h5>@items.tensanpham</h5>
-                                                    <h4><a class="btn" href="/Home/ProductsDetail?ma=@items.ma">XEM</a> <span class="pull-right">@items.dongia</span></h4>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    }
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="item">
+                                                                <ul class="thumbnails">
+                                                                    @foreach (var items in list)
+                                                                    {
+                                                                        <li class="span3">
+                                                                            <div class="thumbnail" style="height:280px">
+                                                                                <i class="tag"></i>
+                                                                                <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt=""></a>
+                                                                                <div class="caption">
+                                                                                    <h5 class="ThanhViet">@items.tensanpham</h5>
+                                                                                    @{ string gia = double.Parse(items.dongia.ToString()).ToString("#,###") + "  VNĐ";}
+                                                                                    <h4><a class="btn" href="/Home/ProductsDetail?ma=@items.ma">XEM</a> <span class="pull-right" style="font-size:small">@gia</span></h4>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                                        }
 
-                                </ul>
-                            </div>
-                        }
-                        i++;
-                    }
-                    
+                                                                </ul>
+                                                            </div>
+                                                                                            }
+                                                                                            i++;
+                                                                                        }
+
                 </div>
                 <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
                 <a class="right carousel-control" href="#featured" data-slide="next">›</a>
@@ -75,20 +77,23 @@
             <li class="span3">
                 <div class="thumbnail">
                     <a href="/Home/ProductsDetail?ma=@items.ma"><img src=@items.imglink alt="" /></a>
-                    <div class="caption">
+                    <div class="caption" style="display:block">
                         <h5>@items.tensanpham</h5>
-                        <p>
+                        <div class="ThanhViet" style="width:100%;text-align:center;font-size:x-small">
                             @items.mota
-                        </p>
+                        </div>
 
-                        <h4 style="text-align:center"><a class="btn" href="/Home/ProductsDetail?ma=@items.ma"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@items.dongia</a></h4>
+                        <h4 style="text-align:center">
+                            <a class="btn" href="/Home/ProductsDetail?ma=@items.ma">
+                                <i class="icon-zoom-in"></i>
+                                @{ string gia = double.Parse(items.dongia.ToString()).ToString("#,###") + "  VNĐ";}
+                            </a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@gia</a>
+                        </h4>
                     </div>
                 </div>
             </li>
-        }
-        
+                                    }
+
     </ul>
 
 </div>
-
-

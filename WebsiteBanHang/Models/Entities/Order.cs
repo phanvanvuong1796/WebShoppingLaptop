@@ -6,24 +6,30 @@ namespace WebsiteBanHang.Models.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Category")]
-    public partial class Category
+    [Table("Order")]
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public Order()
         {
-            SubCategories = new HashSet<SubCategory>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         [Key]
-        public Guid ma { get; set; }
+        public long ma { get; set; }
+
+        public int? makhachhang { get; set; }
+
+        public DateTime? ngaydathang { get; set; }
 
         [StringLength(50)]
-        public string tendanhmuc { get; set; }
+        public string status { get; set; }
 
-        public int? soluong { get; set; }
+        public DateTime? ngaygiaohang { get; set; }
+
+        public virtual Customer Customer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubCategory> SubCategories { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
