@@ -19,5 +19,11 @@ namespace WebsiteBanHang.Models.DAO
             model.SaveChanges();
             return order.ma;
         }
+
+        public IQueryable<Order> GetDataOrder()
+        {
+            var rs = from s in model.Orders orderby s.ma ascending select s;
+            return rs;
+        }
     }
 }

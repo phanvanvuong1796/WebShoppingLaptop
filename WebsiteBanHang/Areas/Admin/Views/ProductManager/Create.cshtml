@@ -22,64 +22,72 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.ma, "Mã sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Mã sản phẩm", htmlAttributes: new { @class = "control-label col-md-2"})
+                @*@Html.LabelFor(model => model.ma, "Mã sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
                     @*@Html.DropDownList("ma", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.EditorFor(model => model.ma, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.ma, new { htmlAttributes = new { @class = "form-control", @style = "width: 300px" } })
                     @Html.ValidationMessageFor(model => model.ma, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.tensanpham, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Tên sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.tensanpham, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.tensanpham, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.tensanpham, new { htmlAttributes = new { @class = "form-control", @style = "width: 300px" } })
                     @Html.ValidationMessageFor(model => model.tensanpham, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.dongia, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Đơn giá", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.dongia, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.dongia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.dongia, new { htmlAttributes = new { @class = "form-control", @style = "width: 300px" } })
                     @Html.ValidationMessageFor(model => model.dongia, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.hangsanxuat, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Hãng sản xuất", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.hangsanxuat, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.hangsanxuat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.hangsanxuat, new { htmlAttributes = new { @class = "form-control", @style = "width: 300px" } })
                     @Html.ValidationMessageFor(model => model.hangsanxuat, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.soluong, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.soluong, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.soluong, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.soluong, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.soluong, new { htmlAttributes = new { @class = "form-control", @style = "width: 300px", @min=1 } })
+                    @Html.ValidationMessageFor(model => model.soluong, "", new { @class = "text-danger", @style = "width: 300px" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.producttype, "producttype", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Loại sản phẩm", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.producttype, "producttype", htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
-                    @Html.DropDownList("Dongmay")
+                    @Html.DropDownListFor(model => model.producttype, (IEnumerable<SelectListItem>)ViewBag.Dongmay, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.imglink, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.imglink, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
                     <input type="file" name="imgFile" value="" />
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.mota, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2"})
+                @*@Html.LabelFor(model => model.mota, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.mota, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.mota, new { htmlAttributes = new { @class = "form-control", @style = "width: 300px" } })
                     @Html.ValidationMessageFor(model => model.mota, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -93,7 +101,8 @@
     }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Quay lại danh sách sản phẩm", "ProductManager", "HomeAd", null, new { onclick= "confirm ('Bạn chưa lưu thay đổi! Bạn muốn rời mà không hoàn tất thay đổi?')" })
     </div>
+    
 </div>
 

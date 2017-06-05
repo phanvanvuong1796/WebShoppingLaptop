@@ -61,6 +61,7 @@ namespace WebsiteBanHang.Models.DAO
         public IQueryable<Product> GetAllProduct()
         {
             var rsPro = (from s in model.Products
+                         orderby s.ma ascending
                          select s);
             return rsPro;
         }
@@ -70,6 +71,11 @@ namespace WebsiteBanHang.Models.DAO
             try
             {
                 model.Products.Add(product);
+                
+                SubCategory subCate = model.SubCategories.Find(product.producttype);
+                subCate.soluong = subCate.soluong + product.soluong;
+                Category cate = model.Categories.Find(subCate.Category.ma);
+                cate.soluong = cate.soluong + product.soluong;
                 model.SaveChanges();
                 return true;
             }
@@ -84,6 +90,51 @@ namespace WebsiteBanHang.Models.DAO
         {
             Product pro = model.Products.Find(product.ma);
             ProductDetail proDetail = model.ProductDetails.Find(product.ma);
+            int SLTruoc = pro.soluong.Value;
+            int SLSau = product.soluong.Value;
+            if (!pro.producttype.Equals(product.producttype))
+            {
+                SubCategory subCate = model.SubCategories.Find(pro.producttype);
+                Category cate = model.Categories.Find(subCate.danhmucma);
+                try
+                {
+                    subCate.soluong = subCate.soluong - SLTruoc;
+                    cate.soluong = cate.soluong - SLTruoc;
+                    model.SaveChanges();
+                    subCate = null;
+                    cate = null;
+                }
+                catch
+                {
+                    return false;
+                }
+                subCate = model.SubCategories.Find(product.producttype);
+                cate = model.Categories.Find(subCate.danhmucma);
+                try
+                {
+                    subCate.soluong = subCate.soluong + SLSau;
+                    cate.soluong = cate.soluong + SLSau;
+                    model.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }else
+            {
+                SubCategory subCate = model.SubCategories.Find(product.producttype);
+                Category cate = model.Categories.Find(subCate.danhmucma);
+                try
+                {
+                    subCate.soluong = subCate.soluong - SLTruoc + SLSau;
+                    cate.soluong = cate.soluong - SLTruoc + SLSau;
+                    model.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
             try
             {
                 pro.tensanpham = product.tensanpham;
@@ -98,6 +149,7 @@ namespace WebsiteBanHang.Models.DAO
                 proDetail.vga = product.ProductDetail.vga;
                 proDetail.manhinh = product.ProductDetail.manhinh;
                 proDetail.vixuly = product.ProductDetail.vixuly;
+
                 model.SaveChanges();
                 return true;
             }

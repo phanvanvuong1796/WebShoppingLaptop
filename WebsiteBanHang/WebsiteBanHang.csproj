@@ -84,6 +84,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -131,6 +139,7 @@
     <Content Include="Areas\Admin\Assets\data\morris-data.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\amelia\bootstrap.css" />
     <Content Include="Content\themes\amelia\bootstrap.min.css" />
@@ -325,9 +334,14 @@
     <Content Include="Areas\Admin\Views\ProductManager\EditDetail.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAd\CategoryManager.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryManager\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CategoryManager\Details.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryManager\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CategoryManager\CreateSubCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryManager\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoryManager\EditSubCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAd\CustomerManager.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAd\OrderManager.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -344,8 +358,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductManagerController.cs" />
     <Compile Include="Areas\Admin\Models\Account.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -356,11 +372,13 @@
     <Compile Include="Models\Bean\ItemCart.cs" />
     <Compile Include="Models\Bean\ShoppingCart.cs" />
     <Compile Include="Models\DAO\CategoryDao.cs" />
+    <Compile Include="Models\DAO\CustomerDao.cs" />
     <Compile Include="Models\DAO\OrderDao.cs" />
     <Compile Include="Models\DAO\OrderDetailDao.cs" />
     <Compile Include="Models\DAO\ProductsDao.cs" />
     <Compile Include="Models\DAO\UserDao.cs" />
     <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\Entities\Customer.cs" />
     <Compile Include="Models\Entities\Order.cs" />
     <Compile Include="Models\Entities\OrderDetail.cs" />
     <Compile Include="Models\Entities\Product.cs" />

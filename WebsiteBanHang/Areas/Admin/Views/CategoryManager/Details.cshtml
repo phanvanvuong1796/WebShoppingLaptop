@@ -1,41 +1,47 @@
-﻿@model IEnumerable<WebsiteBanHang.Models.Entities.SubCategory>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebsiteBanHang.Models.Entities.SubCategory>
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    int count=0;
 }
-
 
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Quản lý danh mục con</h1>
+            <h1 class="page-header">Danh mục con</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
 
     <p>
-        @Html.ActionLink("Thêm mới", "CreateSubCategory", "CategoryManager")
+        @Html.ActionLink("Thêm mới", "CreateSubCategory", "CategoryManager", null)
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.mahienthi)
+                @Html.Label("STT")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tendanhmuccon)
+                @Html.Label("Tên danh mục con")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.soluong)
+                @Html.Label("Số lượng")
             </th>
-            <th></th>
+            
+            <th>
+                @Html.Label("Chức năng")
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
+            count++;
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.mahienthi)
+                    @Html.Label(""+count)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tendanhmuccon)
@@ -44,13 +50,18 @@
                     @Html.DisplayFor(modelItem => item.soluong)
                 </td>
                 <td>
-                    @Html.ActionLink("Sửa", "EditSubCategory","CategoryManager", new { id = item.mahienthi }, null) |
-                    @Html.ActionLink("Xóa", "DeleteSubCategory", "CategoryManager", new { id = item.mahienthi }, null)
+                    @Html.ActionLink("Sửa", "EditSubCategory", "CategoryManager", new { ma = item.mahienthi }, null) |
+                    @if (item.soluong == 0)
+                    {
+                        @Html.ActionLink("Xóa", "DeleteSubCategory", "CategoryManager", new { ma = item.mahienthi }, new { onclick = "return confirm('Bạn có muốn xóa thông tin không?')" })
+                    }
+                    
                 </td>
             </tr>
         }
 
     </table>
+    @Html.PagedListPager(Model, page => Url.Action("Details", new { ma = ViewBag.madanhmuc, page = page }))
 </div>
 
     

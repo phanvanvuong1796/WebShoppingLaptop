@@ -28,7 +28,6 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             imgFile.SaveAs(path);
             string imgLink = "/Content/themes/images/products/" + filename;
             product.imglink = imgLink;
-            product.producttype = Request.Form["Dongmay"].ToString();
             pro = product;
             return View(product);
         }
@@ -73,7 +72,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
                 product.imglink = pro.imglink;
             }
             
-            product.producttype = Request.Form["Dongmay"].ToString();
+            //product.producttype = Request.Form["Dongmay"].ToString();
             product.ProductDetail = pro.ProductDetail;
             pro = product;
             return View(product);

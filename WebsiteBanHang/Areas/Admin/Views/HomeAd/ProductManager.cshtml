@@ -1,8 +1,11 @@
-﻿@model IEnumerable<WebsiteBanHang.Models.Entities.Product>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebsiteBanHang.Models.Entities.Product>
 
 @{
     ViewBag.Title = "ProductManager";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    int count = 1;
 }
 
 <div id="page-wrapper">
@@ -18,34 +21,43 @@
     </p>
     <table class="table">
         <tr>
+            <th>
+                @Html.Label("STT")
+            </th>
+            <th>
+                @Html.Label("Tên sản phẩm")
+                @*@Html.DisplayNameFor(model => model.tensanpham)*@
+            </th>
+            <th>
+                @Html.Label("Hãng sản xuất")
+                @*@Html.DisplayNameFor(model => model.hangsanxuat)*@
+            </th>
+            <th>
+                @Html.Label("Hình ảnh")
+                @*@Html.DisplayNameFor(model => model.imglink)*@
+            </th>
+            
+            <th>
+                @Html.Label("Đơn giá")
+                @*@Html.DisplayNameFor(model => model.dongia)*@
+            </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.tensanpham)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.hangsanxuat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.imglink)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductDetail.ram)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.dongia)
+                @Html.Label("Số lượng")
+                @*@Html.DisplayNameFor(model => model.soluong)*@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.soluong)
+                @Html.Label("Chức năng")
             </th>
-
-            <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-
+                <td>
+                    @Html.Label(""+count)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tensanpham)
                 </td>
@@ -55,25 +67,31 @@
                 <td>
                     <div><img src="@Url.Content(item.imglink)" width="100px" height="100px"/></div>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductDetail.ram)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.dongia)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.soluong)
                 </td>
-
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.mota)
+                </td>*@
                 <td>
                     @Html.ActionLink("Sửa", "Edit", "ProductManager", new { id = item.ma }, null) |
                     
-                    @Html.ActionLink("Xóa", "Delete", "ProductManager",new { id = item.ma }, new { onclick = "return confirm('Bạn có muốn xóa thông tin?');" })
+                    @if(item.soluong==0)
+                    {
+                        @Html.ActionLink("Xóa", "Delete", "ProductManager", new { id = item.ma }, new { onclick = "return confirm('Bạn có muốn xóa thông tin?');"})
+                    }
+
                 </td>
             </tr>
+            count++;
         }
 
     </table>
+    @Html.PagedListPager(Model, page => Url.Action("ProductManager", new { page = page}))
 </div>
 
 

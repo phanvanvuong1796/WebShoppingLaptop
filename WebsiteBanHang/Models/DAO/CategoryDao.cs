@@ -32,7 +32,7 @@ namespace WebsiteBanHang.Models.DAO
             //    listCategory.Add(category, subList);
             //}
             //return listCategory;
-            var rsCate = (from s in shopLapModel.Categories select s);
+            var rsCate = (from s in shopLapModel.Categories orderby s.ma ascending select s);
             return rsCate;
         }
 
@@ -40,6 +40,8 @@ namespace WebsiteBanHang.Models.DAO
         {
             try
             {
+                category.ma = Guid.NewGuid();
+                category.soluong = 0;
                 shopLapModel.Categories.Add(category);
                 shopLapModel.SaveChanges();
                 return true;
@@ -54,6 +56,7 @@ namespace WebsiteBanHang.Models.DAO
         {
             var rs = (from s in shopLapModel.SubCategories
                       where s.danhmucma == ma
+                      orderby s.mahienthi ascending
                       select s);
             return rs;
         }
@@ -94,7 +97,41 @@ namespace WebsiteBanHang.Models.DAO
         {
             try
             {
+                subCate.soluong = 0;
                 shopLapModel.SubCategories.Add(subCate);
+                shopLapModel.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool EditSubCategory(SubCategory subCate)
+        {
+            SubCategory subCategory = shopLapModel.SubCategories.Find(subCate.mahienthi);
+
+            try
+            {
+                subCategory.tendanhmuccon = subCate.tendanhmuccon;
+                subCategory.soluong = subCate.soluong;
+                subCategory.danhmucma = subCate.danhmucma;
+                shopLapModel.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteSubCategory(string ma)
+        {
+            SubCategory subCategory = shopLapModel.SubCategories.Find(ma);
+            try
+            {
+                shopLapModel.SubCategories.Remove(subCategory);
                 shopLapModel.SaveChanges();
                 return true;
             }
@@ -110,7 +147,7 @@ namespace WebsiteBanHang.Models.DAO
             return category;
         }
 
-        public SubCategory FindSubCategory(Guid ma)
+        public SubCategory FindSubCategory(string ma)
         {
             SubCategory subCategory = shopLapModel.SubCategories.Find(ma);
             return subCategory;

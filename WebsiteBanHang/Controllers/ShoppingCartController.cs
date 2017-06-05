@@ -100,11 +100,11 @@ namespace WebsiteBanHang.Controllers
         public ActionResult Payment(string shipName, string shipMobile, string shipAddress, string shipEmail)
         {
             var order = new Order();
-            order.ngaytao = DateTime.Now;
-            order.shipName = shipName;
-            order.shipMobile = shipMobile;
-            order.shipAddress = shipAddress;
-            order.shipEmail = shipEmail;
+            //order.ngaytao = DateTime.Now;
+            //order.shipName = shipName;
+            //order.shipMobile = shipMobile;
+            //order.shipAddress = shipAddress;
+            //order.shipEmail = shipEmail;
 
             try
             {

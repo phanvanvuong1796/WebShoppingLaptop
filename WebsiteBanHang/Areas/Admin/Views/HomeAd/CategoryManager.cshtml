@@ -1,8 +1,11 @@
-﻿@model IEnumerable<WebsiteBanHang.Models.Entities.Category>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebsiteBanHang.Models.Entities.Category>
 
 @{
     ViewBag.Title = "CategoryManager";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    int count = 0;
 }
 
 
@@ -20,17 +23,26 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.tendanhmuc)
+                @Html.Label("STT")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.soluong)
+                @Html.Label("Tên danh mục")
             </th>
-            <th></th>
+            <th>
+                @Html.Label("Số lượng")
+            </th>
+            <th>
+                @Html.Label("Chức năng")
+            </th>
         </tr>
 
         @foreach (var item in Model)
         {
+            count++;
             <tr>
+                <td>
+                    @Html.Label(""+count)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tendanhmuc)
                 </td>
@@ -40,11 +52,16 @@
                 <td>
                     @Html.ActionLink("Sửa", "Edit", "CategoryManager", new { id = item.ma }, null) |
                     @Html.ActionLink("Chi tiết", "Details", "CategoryManager", new { ma = item.ma }, null) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.ma })
+                    @if (item.soluong == 0)
+                    {
+                        @Html.ActionLink("Xóa", "DeleteSubCategory", "CategoryManager", new { id = item.ma }, new { onclick= "return confirm('Xác nhận xóa!')" })
+                    }
+                    
                 </td>
             </tr>
         }
 
     </table>
+    @Html.PagedListPager(Model, page => Url.Action("CategoryManager", new { page = page }))
 </div>
     
