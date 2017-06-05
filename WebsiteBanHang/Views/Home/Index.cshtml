@@ -58,11 +58,11 @@
                                                                         </li>
                                                                                         }
 
-                                </ul>
-                            </div>
-                        }
-                        i++;
-                    }
+                                                                </ul>
+                                                            </div>
+                                                                                            }
+                                                                                            i++;
+                                                                                        }
 
                 </div>
                 <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
@@ -87,12 +87,12 @@
                             <a class="btn" href="/Home/ProductsDetail?ma=@items.ma">
                                 <i class="icon-zoom-in"></i>
                                 @{ string gia = double.Parse(items.dongia.ToString()).ToString("#,###") + "  VNĐ";}
-                            </a> <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@gia</a>
+                            </a> <a class="btn" href="/ShoppingCart/Add?ma=@items.ma&&soluong=1">Thêm vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@gia</a>
                         </h4>
                     </div>
                 </div>
             </li>
-        }
+                                    }
 
     </ul>
 
